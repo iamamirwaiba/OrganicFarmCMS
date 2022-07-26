@@ -28,4 +28,10 @@ public class Designation {
     @Column(name="designation_code")
     private String designationCode;
 
+    Designation(String name, int departmentId,String designationCode){
+        this.name=name;
+        this.departmentId=departmentId;
+        this.designationCode=designationCode;
+    }
+
 }

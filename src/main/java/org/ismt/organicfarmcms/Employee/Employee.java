@@ -1,8 +1,12 @@
 package org.ismt.organicfarmcms.Employee;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,15 +14,13 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name="employee")
-public class Employee {
+public class Employee{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "phone_number")
-    private Long phoneNumber;
     @Column(name = "email")
     private String email;
     @Column(name = "address")
@@ -28,23 +30,16 @@ public class Employee {
     @Column(name = "marital_status")
     private String maritalStatus;
     @Column(name = "date_of_birth")
-    private String dateOfBirth;
+    private Date dateOfBirth;
     @Column(name = "children")
-    private String children;
+    private int children;
     @Column(name = "designation_id")
-    private String designationId;
+    private int designationId;
     @Column(name = "department_id")
-    private String departmentId;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "role")
-    private String role;
+    private int departmentId;
 
-    public Employee(String name, Long phoneNumber, String email, String address, String citizenshipNumber, String maritalStatus, String dateOfBirth, String children, String designationId, String departmentId, String username, String password, String role) {
+    public Employee(String name, String email, String address, String citizenshipNumber, String maritalStatus, Date dateOfBirth, int children, int designationId, int departmentId) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.citizenshipNumber = citizenshipNumber;
@@ -53,8 +48,7 @@ public class Employee {
         this.children = children;
         this.designationId = designationId;
         this.departmentId = departmentId;
-        this.username = username;
-        this.password = password;
-        this.role = role;
     }
+
+
 }
