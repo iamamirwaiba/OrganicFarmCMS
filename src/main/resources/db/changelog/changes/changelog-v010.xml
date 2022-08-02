@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd
+http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.9.xsd">
+
+    <!--    <changeSet id="0001" author="Amir">-->
+    <!--        <sqlFile path="db/changelog/sql/v0003.sql"/>-->
+    <!--    </changeSet>-->
+    <changeSet id="00003" author="Sudip Pakhrin">
+        <dropTable tableName="leave"/>
+
+        <createTable tableName="leave">
+            <column name="id" autoIncrement="true" type="integer"/>
+            <column name="total_leave" type="integer"/>
+            <column name="employee_id" type="integer"/>
+            <column name="remaining_leave" type="integer"/>
+        </createTable>
+        <addPrimaryKey tableName="leave" columnNames="id" constraintName="leave_pk"/>
+        <addForeignKeyConstraint baseTableName="leave" baseColumnNames="employee_id" constraintName="fk_employee_id"
+                                 referencedTableName="employee"
+                                 referencedColumnNames="id"/>
+
+
+        <createTable tableName="employee_leave">
+            <column name="id" autoIncrement="true" type="integer"/>
+            <column name="leave_from" type="date"/>
+            <column name="leave_to" type="date"/>
+            <column name="employee_id" type="integer"/>
+            <column name="leave_days" type="integer"/>
+        </createTable>
+        <addPrimaryKey tableName="employee_leave" columnNames="id" constraintName="employee_leave_pk"/>
+        <addForeignKeyConstraint baseTableName="employee_leave" baseColumnNames="employee_id" constraintName="fk_employee_id"
+                                 referencedTableName="employee"
+                                 referencedColumnNames="id"/>
+
+
+    </changeSet>
+
+
+    <!--<include file="db/changelog/changes/"/>-->
+
+    </databaseChangeLog>

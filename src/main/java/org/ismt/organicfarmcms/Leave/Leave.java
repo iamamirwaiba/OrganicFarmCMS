@@ -19,28 +19,14 @@ public class Leave {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-    @Column(name="leave_type")
-    private String leaveType;
-    @Column(name="leave_from")
-    private String leaveFrom;
-    @Column(name="leave_to")
-    private String leaveTo;
     @Column(name="total_leave")
     private int totalLeave;
-    @Column(name="leave_left")
-    private int leaveLeft;
-    @Column(name="leave_days")
-    private int LeaveDays;
-    @Column(name="employee_id")
-    private int employeeId;
 
-    public Leave(String leaveType, String leaveFrom, String leaveTo, int totalLeave, int leaveLeft, int leaveDays, int employeeId) {
-        this.leaveType = leaveType;
-        this.leaveFrom = leaveFrom;
-        this.leaveTo = leaveTo;
+    @Column(name="designation_id")
+    private int designationId;
+
+    public Leave(int totalLeave, int designationId) {
         this.totalLeave = totalLeave;
-        this.leaveLeft = leaveLeft;
-        LeaveDays = leaveDays;
-        this.employeeId = employeeId;
+        this.designationId=designationId;
     }
 }

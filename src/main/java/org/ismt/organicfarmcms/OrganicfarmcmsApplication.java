@@ -1,6 +1,8 @@
 package org.ismt.organicfarmcms;
 
 import lombok.RequiredArgsConstructor;
+import org.ismt.organicfarmcms.RemainingLeave.RemainingLeave;
+import org.ismt.organicfarmcms.RemainingLeave.RemainingLeaveRepo;
 import org.ismt.organicfarmcms.User.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,12 +11,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.transaction.Transactional;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class OrganicfarmcmsApplication implements CommandLineRunner {
 
 
 	private final UserRepo userRepo;
+	private final RemainingLeaveRepo remainingLeaveRepo;
 
 	@Bean
 	public PasswordEncoder encoder() {
@@ -25,8 +30,8 @@ public class OrganicfarmcmsApplication implements CommandLineRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
-//		User user=new User("9889","admin123","admin");
-//		userRepo.save(user);
+//		remainingLeaveRepo.updateRemainingLeave(4,7);
 	}
 }

@@ -1,6 +1,10 @@
 package org.ismt.organicfarmcms.Employee;
 
 import lombok.RequiredArgsConstructor;
+import org.ismt.organicfarmcms.Leave.Leave;
+import org.ismt.organicfarmcms.Leave.LeaveService;
+import org.ismt.organicfarmcms.RemainingLeave.RemainingLeave;
+import org.ismt.organicfarmcms.RemainingLeave.RemainingLeaveService;
 import org.ismt.organicfarmcms.User.Users;
 import org.ismt.organicfarmcms.User.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     private final EmployeeRepo employeeRepo;
 
     private final UserService userService;
+
+
+    private final LeaveService leaveService;
+
+    private final RemainingLeaveService remainingLeaveService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -45,7 +54,10 @@ public class EmployeeServiceImpl implements EmployeeService{
             Employee employee=new Employee(name,email,address,citizenshipNumebr,matitalStatus,date,children,designationId,departmentId);
             employeeRepo.save(employee);
             Users users =new Users(phoneNumber,encodedPassword,roles,employee.getId());
+            Leave leave=leaveService.getLeave(designationId);
+            RemainingLeave remainingLeave=new RemainingLeave(leave.getTotalLeave(),employee.getId());
             userService.addUser(users);
+            remainingLeaveService.addRemainingLeave(remainingLeave);
             return "Employee Added Successfully";
         }
 
